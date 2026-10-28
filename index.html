@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101522"><meta name="description" content="A challenge-based alarm clock.">
+  <link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+  <title>Rouse — Challenge Alarm</title>
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="brand-mark">R</span><div><strong>ROUSE</strong><small>WAKE WITH INTENT</small></div></div><span class="local-tag"><i></i> LOCAL ONLY</span></header>
+  <main class="shell">
+    <section class="intro"><div class="eyebrow">YOUR MORNING, ON YOUR TERMS</div><h1>Sleep is over.<br><span>Prove it.</span></h1><p>Alarms that wait for your brain to come online.</p></section>
+    <section class="clock-panel panel"><div><span class="label">CURRENT TIME</span><div id="current-time" class="clock">--:--:--</div><div id="current-date" class="muted">Loading date…</div></div><div class="clock-badge"><span class="pulse"></span> READY WHEN YOU ARE</div></section>
+    <section class="section-head"><div><span class="label">YOUR SCHEDULE</span><h2>Alarms <span id="alarm-count" class="count">0</span></h2></div><button id="add-alarm-open" class="primary"><span>＋</span> New alarm</button></section>
+    <section id="alarm-list" class="alarm-list"></section>
+    <section id="empty-state" class="empty panel"><div class="empty-icon">◷</div><h3>No alarms. No excuses.</h3><p>Create an alarm and choose the challenge that earns you silence.</p><button id="empty-add" class="secondary">Create your first alarm</button></section>
+    <p class="footnote"><span>●</span> Data stays in this browser on this device. Keep this page open for alarms to trigger.</p>
+  </main>
+  <dialog id="alarm-dialog" class="dialog"><form id="alarm-form"><div class="dialog-head"><div><span class="label">CONFIGURATION</span><h2 id="dialog-title">Create alarm</h2></div><button type="button" class="icon-btn" id="close-dialog" aria-label="Close">×</button></div>
+    <label class="field">Alarm label<input id="alarm-label" maxlength="48" placeholder="e.g. Morning training" required></label>
+    <div class="field"><label for="alarm-time">Time</label><input id="alarm-time" type="time" required></div>
+    <div class="two-fields"><label class="field">Challenge<select id="challenge-type"><option value="math">Mental maths</option><option value="captcha">Code recall</option><option value="tiles">Tile sequence</option></select></label><label class="field">Difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label></div>
+    <p id="challenge-help" class="hint">Solve a short arithmetic problem to dismiss the alarm.</p><p id="form-error" class="error" role="alert"></p>
+    <div class="dialog-actions"><button type="button" id="cancel-dialog" class="secondary">Cancel</button><button type="submit" class="primary">Save alarm</button></div>
+  </form></dialog>
+  <section id="ring-screen" class="ring-screen" aria-modal="true" role="dialog" aria-labelledby="ring-title" hidden><div class="ring-content"><div class="ring-symbol"><span>R</span><i></i></div><div class="eyebrow">ALARM IN PROGRESS</div><h1 id="ring-title">Time to get up.</h1><p id="ring-label" class="ring-subtitle">Your alarm is ringing.</p><div class="ring-clock" id="ring-clock">00:00</div><div class="ring-card"><div class="ring-card-head"><span class="label">DISMISS CHALLENGE</span><span id="challenge-level" class="difficulty-pill">EASY</span></div><div id="challenge-area"></div><p id="challenge-feedback" class="feedback" aria-live="polite"></p></div><div class="ring-footer"><span class="sound-indicator"><i></i> SOUND ACTIVE</span><span>Complete the challenge to silence</span></div></div></section>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body></html>
